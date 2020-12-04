@@ -2,6 +2,7 @@ version: "3.7"
 
 services:
   ibm-fhir-server:
+    container_name: ibmfhir
     image: ibmcom/ibm-fhir-server:${IBM_FHIR_SERVER_VERSION}
     networks:
       - fhir-benchmark

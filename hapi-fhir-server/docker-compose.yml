@@ -2,6 +2,7 @@ version: "3.7"
 
 services:
   fhir:
+    container_name: hapifhir
     image: docker.miracum.org/miracum-data/hapi-fhir-jpaserver:v8.1.2
     networks:
       - fhir-benchmark
@@ -15,13 +16,16 @@ services:
       datasource.password: postgres
       hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
       datasource.driver: org.postgresql.Driver
-      validation.requests.enabled: "true"
+      validation.requests.enabled: "false"
     depends_on:
       - db
 
   db:
+    container_name: hapidb
     image: postgres:12.4-alpine
     restart: always
+    networks:
+      - fhir-benchmark
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: fhir
