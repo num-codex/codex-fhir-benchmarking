@@ -26,6 +26,8 @@ services:
 
   postgres:
     image: postgres:12.3
+    networks:
+      - fhir-benchmark
     ports:
       - 6432:5432
     environment:
