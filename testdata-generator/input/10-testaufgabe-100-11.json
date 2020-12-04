@@ -1,0 +1,47 @@
+{
+  "name": "t-100-11",
+  "numberToGenerate": 400,
+  "idOffsets": {
+    "Patient": 5000,
+    "Encounter": 5000,
+    "Condition": 0,
+    "Procedure": 0,
+    "Observation": 0,
+    "ServiceRequest": 0,
+    "DiagnosticReport": 0,
+    "Specimen": 0
+  },
+  "Bundle": [
+    {
+      "blueprint": "Patient",
+      "genDesc": {
+        "$.gender": {
+          "function": "genEnum",
+          "params": {
+            "options": [
+              "female"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "blueprint": "Encounter",
+      "genDesc": {
+        "$.status": "finished"
+      }
+    },
+    {
+      "blueprint": "Condition",
+      "genDesc": {
+        "$.code.coding[0].code": {
+          "function": "genEnum",
+          "params": {
+            "options": ["C50.1", "C50.2", "C50.3", "C50.4", "C50.5", "C50.6", "C50.7"
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

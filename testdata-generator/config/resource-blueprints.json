@@ -1,0 +1,711 @@
+{
+  "Procedure": {
+    "resourceType": "Procedure",
+    "id": "6c44509e8cffdfd2c21a01f6458f98f87767c32947899396d5aa120680cd8f1b",
+    "meta": {
+      "source": "#kdbp.fau.patprozeduren:kdbp-to-fhir:null",
+      "profile": [
+        "https://www.medizininformatik-initiative.de/fhir/core/modul-prozedur/StructureDefinition/Procedure"
+      ]
+    },
+    "identifier": [
+      {
+        "use": "official",
+        "system": "https://fhir.diz.uk-erlangen/NamingSystem/kdbSurrogateProcedureId",
+        "value": "f864da4f79c9278f428717a886464c5f4517b7b37d736ab54a1001ea76f79de5"
+      }
+    ],
+    "status": "completed",
+    "category": {
+      "coding": [
+        {
+          "system": "http://snomed.info/sct",
+          "code": "103693007",
+          "display": "Diagnostic procedure"
+        }
+      ]
+    },
+    "code": {
+      "coding": [
+        {
+          "system": "http://fhir.de/CodeSystem/dimdi/ops",
+          "version": "4567",
+          "code": "103693007"
+        }
+      ]
+    },
+    "subject": {
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "MR"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/patientId",
+        "value": "100123456"
+      }
+    },
+    "encounter": {
+      "reference": "Encounter/86af63a644c04cd438d4a772cee4797fdce04c8b031ace8f24678448c4217a7d",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "VN"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/encounterId",
+        "value": "301234567"
+      }
+    },
+    "performedDateTime": "1952-07-27T09:45:00+01:00"
+  },
+  "Condition": {
+    "resourceType": "Condition",
+    "id": "760621ece14839630833c3fdb5e204b21be60b07ae93b17ac9bba6eb5594fcf3",
+    "meta": {
+      "source": "kdbp.fau.patdiagnosen:kdbp-to-fhir:null",
+      "profile": [
+        "https://www.medizininformatik-initiative.de/fhir/core/modul-diagnose/StructureDefinition/Diagnose"
+      ]
+    },
+    "identifier": [
+      {
+        "use": "official",
+        "system": "https://fhir.diz.uk-erlangen/NamingSystem/kdbSurrogateConditionId",
+        "value": "33cb37911df0272ab663d20d693a101de56e8c1b880b07f3f45bd78a81cb1af9"
+      }
+    ],
+    "clinicalStatus": {
+      "coding": [
+        {
+          "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+          "code": "active"
+        }
+      ]
+    },
+    "code": {
+      "coding": [
+        {
+          "system": "http://fhir.de/CodeSystem/dimdi/icd-10-gm",
+          "version": "2016",
+          "code": "I5.5"
+        }
+      ]
+    },
+    "subject": {
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "MR"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/patientId",
+        "value": "100123456"
+      }
+    },
+    "onsetDateTime": "1952-07-22T09:45:00+01:00",
+    "recordedDate": "1952-07-22T09:45:00+01:00"
+  },
+  "Patient": {
+    "resourceType": "Patient",
+    "id": "2e9b9e0f0b64383af583ba5fc0954bcc6bd57f2148da7e25f8b106253c21789b",
+    "meta": {
+      "source": "kdbp.fau.patstammdaten:kdbp-to-fhir:null"
+    },
+    "identifier": [
+      {
+        "use": "usual",
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "MR"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/patientId",
+        "value": "100123456"
+      }
+    ],
+    "gender": "unknown",
+    "birthDate": "1952-07-22",
+    "deceasedDateTime": "2020-07-22T08:45:00+02:00",
+    "address": [
+      {
+        "type": "physical",
+        "city": "Erlangen",
+        "postalCode": "91052"
+      }
+    ]
+  },
+  "Encounter": {
+    "resourceType": "Encounter",
+    "id": "86af63a644c04cd438d4a772cee4797fdce04c8b031ace8f24678448c4217a7d",
+    "meta": {
+      "source": "kdbp.fau.patfalldaten:kdbp-to-fhir:null",
+      "profile": [
+        "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/StructureDefinition/Encounter/Versorgungsfall"
+      ]
+    },
+    "identifier": [
+      {
+        "use": "official",
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "VN"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/encounterId",
+        "value": "301234567",
+        "assigner": {
+          "identifier": {
+            "system": "http://fhir.de/NamingSystem/arge-ik/iknr",
+            "value": "260950567"
+          }
+        }
+      }
+    ],
+    "status": "in-progress",
+    "class": {
+      "system": "https://www.medizininformatik-initiative.de/fhir/core/modul-fall/CodeSystem/Versorgungsfallklasse",
+      "_code": {
+        "extension": [
+          {
+            "url": "http://hl7.org/fhir/StructureDefinition/data-absent-reason",
+            "valueCode": "unknown"
+          }
+        ]
+      }
+    },
+    "subject": {
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "MR"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/patientId",
+        "value": "100123456"
+      }
+    },
+    "period": {
+      "start": "1952-07-22T09:45:00+01:00",
+      "end": "1952-07-27T09:45:00+01:00"
+    },
+    "diagnosis": []
+  },
+  "ServiceRequest": {
+    "resourceType": "ServiceRequest",
+    "id": "16057fd46f70597a07fcc05486153864f3c679de8dfdf309170d473584066eb0",
+    "meta": {
+      "source": "#laboratory",
+      "profile": [
+        "https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/ServiceRequestLab"
+      ]
+    },
+    "identifier": [
+      {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "PLAC"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/swisslab/serviceRequestId",
+        "value": "1234",
+        "assigner": {
+          "identifier": {
+            "system": "https://www.medizininformatik-initiative.de/fhir/core/NamingSystem/org-identifier",
+            "value": "UKER"
+          }
+        }
+      }
+    ],
+    "status": "completed",
+    "intent": "order",
+    "category": [
+      {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code": "laboratory"
+          }
+        ]
+      }
+    ],
+    "code": {
+      "coding": [
+        {
+          "system": "https://laboratory-request",
+          "code": "laboratory-request"
+        }
+      ]
+    },
+    "subject": {
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "MR"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/patientId",
+        "value": "1234567"
+      }
+    },
+    "encounter": {
+      "reference": "Encounter/7948eec8952251f5970c05f29f0412486e20788e6723eeff136b7f1c54c2fb4a",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "VN"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/encounterId",
+        "value": "12345"
+      }
+    },
+    "authoredOn": "2020-07-22T00:00:00+02:00"
+  },
+  "DiagnosticReport": {
+    "resourceType": "DiagnosticReport",
+    "id": "e26b47d2286cb0ad9dca4328d83cbc67b24289355d8977d49b2a66e4b2b3a3df",
+    "meta": {
+      "source": "#laboratory",
+      "profile": [
+        "https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/DiagnosticReportLab"
+      ]
+    },
+    "identifier": [
+      {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "FILL"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/swisslab/labObservationId",
+        "value": "1234",
+        "assigner": {
+          "identifier": {
+            "system": "https://www.medizininformatik-initiative.de/fhir/core/NamingSystem/org-identifier",
+            "value": "UKER"
+          }
+        }
+      }
+    ],
+    "basedOn": [
+      {
+        "reference": "ServiceRequest/16057fd46f70597a07fcc05486153864f3c679de8dfdf309170d473584066eb0"
+      }
+    ],
+    "status": "final",
+    "category": [
+      {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "26436-6"
+          },
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0074",
+            "code": "LAB"
+          }
+        ]
+      }
+    ],
+    "code": {
+      "coding": [
+        {
+          "system": "http://loinc.org",
+          "code": "11502-2"
+        }
+      ]
+    },
+    "subject": {
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "MR"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/patientId",
+        "value": "1234567"
+      }
+    },
+    "encounter": {
+      "reference": "Encounter/7948eec8952251f5970c05f29f0412486e20788e6723eeff136b7f1c54c2fb4a",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "VN"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/encounterId",
+        "value": "12345"
+      }
+    },
+    "effectiveDateTime": "2020-07-22T10:44:00+02:00",
+    "issued": "2020-07-22T10:44:00.000+02:00",
+    "result": [
+      {
+        "reference": "Observation/a27a975a4fe010189f679a3ae32ec794e62a306742537ed02be649eef01511b2"
+      }
+    ]
+  },
+  "Observation": {
+    "resourceType": "Observation",
+    "id": "a27a975a4fe010189f679a3ae32ec794e62a306742537ed02be649eef01511b2",
+    "meta": {
+      "source": "#laboratory",
+      "profile": [
+        "https://www.medizininformatik-initiative.de/fhir/core/modul-labor/StructureDefinition/ObservationLab"
+      ]
+    },
+    "identifier": [
+      {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "OBI"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/swisslab/labObservationId",
+        "value": "20509-6_123",
+        "assigner": {
+          "identifier": {
+            "system": "https://www.medizininformatik-initiative.de/fhir/core/NamingSystem/org-identifier",
+            "value": "UKER"
+          }
+        }
+      }
+    ],
+    "status": "final",
+    "category": [
+      {
+        "coding": [
+          {
+            "system": "http://loinc.org",
+            "code": "26436-6"
+          },
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/observation-category",
+            "code": "laboratory"
+          }
+        ]
+      }
+    ],
+    "code": {
+      "coding": [
+        {
+          "system": "http://loinc.org",
+          "code": "20509-6"
+        }
+      ]
+    },
+    "subject": {
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "MR"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/patientId",
+        "value": "1234567"
+      }
+    },
+    "encounter": {
+      "reference": "Encounter/7948eec8952251f5970c05f29f0412486e20788e6723eeff136b7f1c54c2fb4a",
+      "identifier": {
+        "type": {
+          "coding": [
+            {
+              "system": "http://terminology.hl7.org/CodeSystem/v2-0203",
+              "code": "VN"
+            }
+          ]
+        },
+        "system": "https://fhir.diz.uk-erlangen.de/NamingSystem/encounterId",
+        "value": "12345"
+      }
+    },
+    "effectiveDateTime": "2020-07-22T10:44:00+02:00",
+    "issued": "2020-07-22T10:45:00.000+02:00",
+    "valueQuantity": {
+      "value": 126.0,
+      "unit": "g/dl",
+      "system": "http://unitsofmeasure.org",
+      "code": "g/dl"
+    },
+    "interpretation": [
+      {
+        "coding": [
+          {
+            "system": "http://terminology.hl7.org/CodeSystem/v3-ObservationInterpretation",
+            "code": "L",
+            "display": "Low"
+          }
+        ]
+      }
+    ],
+    "referenceRange": [
+      {
+        "low": {
+          "value": 123.000001,
+          "unit": "g/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dl"
+        },
+        "high": {
+          "value": 130.123231,
+          "unit": "g/dl",
+          "system": "http://unitsofmeasure.org",
+          "code": "g/dl"
+        },
+        "text": "123-130"
+      }
+    ]
+  },
+  "Specimen": {
+    "resourceType": "Specimen",
+    "collection": {
+      "bodySite": {
+        "coding": [
+          {
+            "code": "C64.8",
+            "system": "urn:oid:2.16.840.1.113883.6.43.1"
+          }
+        ]
+      },
+      "collectedDateTime": "2005-06-17",
+      "fastingStatusCodeableConcept": {
+        "coding": [
+          {
+            "code": "FNA",
+            "system": "http://terminology.hl7.org/CodeSystem/v2-0916"
+          }
+        ]
+      }
+    },
+    "extension": [
+      {
+        "url": "https://fhir.bbmri.de/StructureDefinition/StorageTemperature",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "code": "temperatureOther",
+              "system": "https://fhir.bbmri.de/CodeSystem/StorageTemperature"
+            }
+          ]
+        }
+      },
+      {
+        "url": "https://fhir.bbmri.de/StructureDefinition/SampleDiagnosis",
+        "valueCodeableConcept": {
+          "coding": [
+            {
+              "code": "R12.7",
+              "system": "http://hl7.org/fhir/sid/icd-10"
+            }
+          ]
+        }
+      },
+      {
+        "url": "https://fhir.bbmri.de/StructureDefinition/Custodian",
+        "valueReference": {
+          "reference": "Organization/collection-8"
+        }
+      }
+    ],
+    "id": "bbmri-0-specimen-0",
+    "meta": {
+      "profile": [
+        "https://fhir.bbmri.de/StructureDefinition/Specimen"
+      ]
+    },
+    "subject": {
+      "reference": "Patient/bbmri-0"
+    },
+    "type": {
+      "coding": [
+        {
+          "code": "saliva",
+          "system": "https://fhir.bbmri.de/CodeSystem/SampleMaterialType"
+        }
+      ]
+    }
+  },
+  "MedicationStatement": {
+    "id": "id-123",
+    "meta": {
+        "source": "#p21"
+    },
+    "dosage": [
+        {
+            "site": {
+                "coding": [
+                    {
+                        "code": "ISI - 0031",
+                        "system": "http://standardterms.edqm.eu",
+                        "display": "Oral"
+                    }
+                ]
+            },
+            "text": "Orale Applikation von 2.000 mg bis unter 2.250 mg Temozolomid",
+            "route": {
+                "coding": [
+                    {
+                        "code": "20053000",
+                        "system": "http://standardterms.edqm.eu",
+                        "display": "Oral use"
+                    }
+                ]
+            },
+            "method": {
+                "coding": [
+                    {
+                        "code": "AME-0019",
+                        "system": "http://standardterms.edqm.eu",
+                        "display": "Swallowing"
+                    }
+                ]
+            },
+            "doseAndRate": [
+                {
+                    "type": {
+                        "coding": [
+                            {
+                                "code": "calculated",
+                                "system": "http://terminology.hl7.org/CodeSystem/dose-rate-type",
+                                "display": "calculated"
+                            }
+                        ]
+                    },
+                    "doseRange": {
+                        "low": {
+                            "code": "mg",
+                            "unit": "milligram",
+                            "value": 2000.0,
+                            "system": "http://unitsofmeasure.org"
+                        },
+                        "high": {
+                            "code": "mg",
+                            "unit": "milligram",
+                            "value": 2250.0,
+                            "system": "http://unitsofmeasure.org"
+                        }
+                    }
+                }
+            ]
+        }
+    ],
+    "partOf": [
+        {
+            "reference": "Procedure/id-123"
+        }
+    ],
+    "status": "completed",
+    "context": {
+        "reference": "Encounter/psn-eid.123"
+    },
+    "subject": {
+        "reference": "Patient/psn-pid.123"
+    },
+    "identifier": [
+        {
+            "value": "id-123",
+            "system": "https://miracum.org/fhir/NamingSystem/identifier/P21SurrogateMedicationStatementId"
+        }
+    ],
+    "resourceType": "MedicationStatement",
+    "effectivePeriod": {
+        "end": "2020-01-01T01:00:00+00:00",
+        "start": "2020-01-02T01:00:00+00:00"
+    },
+    "medicationReference": {
+        "reference": "Medication/id-123"
+    }
+},
+"Medication":{
+  "id": "id-123",
+  "code": {
+      "coding": [
+          {
+              "code": "L01AX03",
+              "system": "http://fhir.de/CodeSystem/dimdi/atc",
+              "version": "ATC/DDD Version 2020"
+          }
+      ]
+  },
+  "meta": {
+      "source": "#p21"
+  },
+  "status": "active",
+  "identifier": [
+      {
+          "value": "id-123",
+          "system": "https://miracum.org/fhir/NamingSystem/identifier/P21SurrogateMedicationId"
+      }
+  ],
+  "ingredient": [
+      {
+          "itemCodeableConcept": {
+              "coding": [
+                  {
+                      "code": "L01AX03",
+                      "system": "http://fhir.de/CodeSystem/dimdi/atc"
+                  },
+                  {
+                      "code": "YF1K15M17Y",
+                      "system": "http://fdasis.nlm.nih.gov"
+                  },
+                  {
+                      "code": "28008",
+                      "system": "http://fhir.de/CodeSystem/ask"
+                  },
+                  {
+                      "code": "85622-93-1",
+                      "system": "urn:oid:2.16.840.1.113883.6.61"
+                  }
+              ]
+          }
+      }
+  ],
+  "resourceType": "Medication"
+}
+}
