@@ -2,9 +2,17 @@ version: "3.7"
 
 services:
   testdatagenerator:
-    image: docker.miracum.org/fhir/fhir-generator@sha256:0edff254b37c729b87244ba9fe79a8097c844070139ff8108b7070b032405cd8 
+    image: docker.miracum.org/fhir/fhir-generator:v1.2.0
     volumes:
       - ./config:/opt/testdata-generator/src/config
       - ./input:/opt/testdata-generator/input
       - ./output:/opt/testdata-generator/output
       - ./largerFhirBundles:/opt/testdata-generator/largerFhirBundles
+    networks:
+      - fhir-benchmark
+    entrypoint: sh -c "tail -f /dev/null"
+
+networks:
+  fhir-benchmark:
+    external: true
+    name: fhir-benchmark

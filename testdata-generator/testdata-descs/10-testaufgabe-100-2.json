@@ -1,0 +1,35 @@
+{
+  "name": "t-100-2",
+  "numberToGenerate": 5000,
+  "idOffsets": {
+    "Patient": 5000,
+    "Encounter": 5000,
+    "Condition": 0,
+    "Procedure": 0,
+    "Observation": 0,
+    "ServiceRequest": 0,
+    "DiagnosticReport": 0,
+    "Specimen": 0
+  },
+  "Bundle": [
+    {
+      "blueprint": "Patient",
+      "genDesc": {
+        "$.gender": {
+          "function": "genEnum",
+          "params": {
+            "options": [
+              "female"
+            ]
+          }
+        }
+      }
+    },
+    {
+      "blueprint": "Encounter",
+      "genDesc": {
+        "$.status": "finished"
+      }
+    }
+  ]
+}

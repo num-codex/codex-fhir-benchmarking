@@ -1,0 +1,57 @@
+{
+  "name": "t-1-6",
+  "numberToGenerate": 10295,
+  "idOffsets": {
+    "Patient": 213,
+    "Encounter": 213,
+    "Condition": 1,
+    "Procedure": 1,
+    "Observation": 1,
+    "ServiceRequest": 1,
+    "DiagnosticReport": 1,
+    "Specimen": 1
+  },
+  "Bundle": [
+    {
+      "blueprint": "Patient",
+      "genDesc": {
+        "$.gender": {
+          "function": "genEnum",
+          "params": {
+            "options": [
+              "female"
+            ]
+          }
+        },
+        "$.birthDate": {
+          "function": "genDate",
+          "params": {
+            "start": "1952-01-01T09:45:00+01:00",
+            "end": "1999-01-01T09:45:00+01:00",
+            "format": "yyyy-mm-dd"
+          }
+        }
+      }
+    },
+    {
+      "blueprint": "Encounter",
+      "genDesc": {
+        "$.status": "finished"
+      }
+    },
+    {
+      "blueprint": "Observation",
+      "genDesc": {
+        "$.code.coding[0].code": "26515-7",
+        "$.valueQuantity.value": {
+          "function": "genNumber",
+          "params": {
+            "min": 30,
+            "max": 50,
+            "precision": 4
+          }
+        }
+      }
+    }
+  ]
+}

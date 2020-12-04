@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  fhir:
+    image: docker.miracum.org/miracum-data/hapi-fhir-jpaserver:v8.1.2
+    networks:
+      - fhir-benchmark
+    restart: always
+    ports:
+      - "8082:8080"
+    environment:
+      server.address: "http://localhost:8082/fhir"
+      datasource.url: "jdbc:postgresql://db:5432/fhir?currentSchema=public"
+      datasource.username: postgres
+      datasource.password: postgres
+      hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
+      datasource.driver: org.postgresql.Driver
+      validation.requests.enabled: "true"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:12.4-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: fhir
+
+networks:
+  fhir-benchmark:
+    external: true
+    name: fhir-benchmark

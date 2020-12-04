@@ -1,0 +1,49 @@
+version: "3.7"
+
+services:
+  ibm-fhir-server:
+    image: ibmcom/ibm-fhir-server:${IBM_FHIR_SERVER_VERSION}
+    networks:
+      - fhir-benchmark
+    volumes:
+      - ./server.xml:/opt/ol/wlp/usr/servers/fhir-server/server.xml
+      - ./fhir-server-config.json:/opt/ol/wlp/usr/servers/fhir-server/config/default/fhir-server-config.json
+      - ./postgresql.properties:/opt/ol/wlp/usr/servers/fhir-server/postgresql.properties
+    #      - ./fhir-persistence-schema-4.3.0-cli.jar:/opt/ol/wlp/usr/servers/fhir-server/fhir-persistence-schema-4.3.0-cli.jar
+    ports:
+      - 9080:9080
+      - 9443:9443
+    depends_on:
+      - postgres
+    command: sh -c "
+      curl -O https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh;
+      curl -O -L https://github.com/IBM/FHIR/releases/download/${IBM_FHIR_SERVER_VERSION}/fhir-persistence-schema-${IBM_FHIR_SERVER_VERSION}-cli.jar;
+      chmod +x wait-for-it.sh;
+      ./wait-for-it.sh postgres:5432 -- java -jar fhir-persistence-schema-${IBM_FHIR_SERVER_VERSION}-cli.jar --db-type postgresql --prop-file postgresql.properties --schema-name fhirdata --create-schemas;
+      java -jar fhir-persistence-schema-${IBM_FHIR_SERVER_VERSION}-cli.jar --db-type postgresql --prop-file postgresql.properties --schema-name fhirdata --update-schema;
+      /opt/ol/wlp/bin/server run fhir-server"
+
+  postgres:
+    image: postgres:12.3
+    ports:
+      - 6432:5432
+    environment:
+      # data/postgres folder within the container!
+      PGDATA: /data/postgres
+      # CHANGE User-Access data for productive usage!
+      POSTGRES_DB: fhirdata
+      POSTGRES_USER: fhirserver
+      POSTGRES_PASSWORD: change-password
+      # Using volumes instead of binding local folders, as Windows-based Hosts issue a "wrong ownership" error.
+      # Be careful when changing this property for running instances!
+      # You might have to copy contents of the data/postgres folder into the volume.
+    volumes:
+      - ibm-fhir-server-postgres-data:/data/postgres
+
+volumes:
+  ibm-fhir-server-postgres-data: {}
+
+networks:
+  fhir-benchmark:
+    external: true
+    name: fhir-benchmark
