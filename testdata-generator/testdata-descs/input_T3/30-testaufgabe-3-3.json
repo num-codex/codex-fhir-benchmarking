@@ -1,0 +1,51 @@
+{
+  "name": "t-3-3",
+  "description": "generate 1998 C50.0 Conditions within OPS: 5-*",
+  "numberToGenerate": 1998,
+  "idOffsets": {
+    "Patient": 0,
+    "Encounter": 0,
+    "Condition": 0,
+    "Procedure": 0,
+    "Observation": 0,
+    "ServiceRequest": 0,
+    "DiagnosticReport": 0,
+    "Specimen": 0
+  },
+  "Bundle": [
+    {
+      "blueprint": "Patient",
+      "genDesc": {
+        "$.gender": {
+          "function": "genEnum",
+          "params": {
+            "options": [
+              "male",
+              "female"
+            ]
+          }
+        },
+        "$.birthDate": {
+          "function": "genDate",
+          "params": {
+            "start": "1900-01-01T09:45:00+01:00",
+            "end": "2000-01-01T09:45:00+01:00",
+            "format": "yyyy-mm-dd"
+          }
+        }
+      }
+    },
+    {
+      "blueprint": "Encounter",
+      "genDesc": {
+        "$.status": "finished"
+      }
+    },
+    {
+      "blueprint": "Condition",
+      "genDesc": {
+        "$.code.coding[0].code": "C50.0"
+      }
+    }
+  ]
+}

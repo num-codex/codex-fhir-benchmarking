@@ -1,0 +1,51 @@
+{
+  "name": "t-2-7",
+  "description": "add Specimen to 1000 old patients",
+  "numberToGenerate": 1000,
+  "idOffsets": {
+    "Patient": 0,
+    "Encounter": 0,
+    "Condition": 0,
+    "Procedure": 0,
+    "Observation": 0,
+    "ServiceRequest": 0,
+    "DiagnosticReport": 0,
+    "Specimen": 0
+  },
+  "Bundle": [
+    {
+      "blueprint": "Patient",
+      "genDesc": {
+        "$.gender": {
+          "function": "genEnum",
+          "params": {
+            "options": [
+              "male",
+              "female"
+            ]
+          }
+        },
+        "$.birthDate": {
+          "function": "genDate",
+          "params": {
+            "start": "1900-01-01T09:45:00+01:00",
+            "end": "1953-01-01T09:45:00+01:00",
+            "format": "yyyy-mm-dd"
+          }
+        }
+      }
+    },
+    {
+      "blueprint": "Encounter",
+      "genDesc": {
+        "$.status": "finished"
+      }
+    },
+    {
+      "blueprint": "Specimen",
+      "genDesc": {
+        "$.type.coding[0].code": "Serum"
+      }
+    }
+  ]
+}

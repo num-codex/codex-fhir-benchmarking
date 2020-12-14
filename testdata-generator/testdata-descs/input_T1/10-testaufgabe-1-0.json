@@ -1,0 +1,22 @@
+{
+  "name": "t-1-0",
+  "numberToGenerate": 1,
+  "idOffsets": {
+    "Patient": 0,
+    "Encounter": 0,
+    "Condition": 0,
+    "Procedure": 0,
+    "Observation": 0,
+    "ServiceRequest": 0,
+    "DiagnosticReport": 0,
+    "Specimen": 0
+  },
+  "Bundle": [
+    {
+      "blueprint": "Medication",
+      "genDesc": {
+        "$.id": "med-generated-id-1"
+      }
+    }
+  ]
+}

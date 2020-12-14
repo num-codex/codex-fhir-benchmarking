@@ -1,0 +1,57 @@
+{
+  "name": "t-3-2",
+  "description": "generate 5302 1-* Procedures",
+  "numberToGenerate": 5302,
+  "idOffsets": {
+    "Patient": 258386,
+    "Encounter": 258386,
+    "Condition": 1998,
+    "Procedure": 258386,
+    "Observation": 0,
+    "ServiceRequest": 0,
+    "DiagnosticReport": 0,
+    "Specimen": 0
+  },
+  "Bundle": [
+    {
+      "blueprint": "Patient",
+      "genDesc": {
+        "$.gender": {
+          "function": "genEnum",
+          "params": {
+            "options": [
+              "male",
+              "female"
+            ]
+          }
+        },
+        "$.birthDate": {
+          "function": "genDate",
+          "params": {
+            "start": "1900-01-01T09:45:00+01:00",
+            "end": "2000-01-01T09:45:00+01:00",
+            "format": "yyyy-mm-dd"
+          }
+        }
+      }
+    },
+    {
+      "blueprint": "Encounter",
+      "genDesc": {
+        "$.status": "finished"
+      }
+    },
+    {
+      "blueprint": "Procedure",
+      "genDesc": {
+        "$.code.coding[0].code": "1-*"
+      }
+    },
+    {
+      "blueprint": "Condition",
+      "genDesc": {
+        "$.code.coding[0].code": "C50.0"
+      }
+    }
+  ]
+}

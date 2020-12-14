@@ -1,0 +1,51 @@
+{
+  "name": "t-3-5",
+  "description": "generate 99500 Specimen at beginning",
+  "numberToGenerate": 99500,
+  "idOffsets": {
+    "Patient": 164188,
+    "Encounter": 164188,
+    "Condition": 1998,
+    "Procedure": 164188,
+    "Observation": 0,
+    "ServiceRequest": 0,
+    "DiagnosticReport": 0,
+    "Specimen": 500
+  },
+  "Bundle": [
+    {
+      "blueprint": "Patient",
+      "genDesc": {
+        "$.gender": {
+          "function": "genEnum",
+          "params": {
+            "options": [
+              "male",
+              "female"
+            ]
+          }
+        },
+        "$.birthDate": {
+          "function": "genDate",
+          "params": {
+            "start": "1900-01-01T09:45:00+01:00",
+            "end": "2000-01-01T09:45:00+01:00",
+            "format": "yyyy-mm-dd"
+          }
+        }
+      }
+    },
+    {
+      "blueprint": "Encounter",
+      "genDesc": {
+        "$.status": "finished"
+      }
+    },
+    {
+      "blueprint": "Specimen",
+      "genDesc": {
+        "$.type.coding[0].code": "Tumor"
+      }
+    }
+  ]
+}

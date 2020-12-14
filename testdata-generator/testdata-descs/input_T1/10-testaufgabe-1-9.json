@@ -1,0 +1,52 @@
+{
+  "name": "t-1-9",
+  "numberToGenerate": 191,
+  "idOffsets": {
+    "Patient": 65170,
+    "Encounter": 65170,
+    "Condition": 0,
+    "Procedure": 0,
+    "Observation": 0,
+    "ServiceRequest": 0,
+    "DiagnosticReport": 0,
+    "Specimen": 0,
+    "MedicationStatement": 3
+  },
+  "Bundle": [
+    {
+      "blueprint": "Patient",
+      "genDesc": {
+        "$.gender": {
+          "function": "genEnum",
+          "params": {
+            "options": [
+              "male"
+            ]
+          }
+        },
+        "$.birthDate": {
+          "function": "genDate",
+          "params": {
+            "start": "1952-01-01T09:45:00+01:00",
+            "end": "1999-01-01T09:45:00+01:00",
+            "format": "yyyy-mm-dd"
+          }
+        }
+      }
+    },
+    {
+      "blueprint": "Encounter",
+      "genDesc": {
+        "$.status": "finished"
+      }
+    },
+    {
+      "blueprint": "MedicationStatement",
+      "genDesc": {
+        "$.id": "med-generated-id-1",
+        "$.code.coding[0].code": "L01AX03",
+        "$.medicationReference.reference": "Medication/med-generated-id-1"
+      }
+    }
+  ]
+}
