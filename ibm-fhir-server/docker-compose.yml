@@ -1,43 +1,49 @@
-version: "3.7"
+version: "3.9"
 
 services:
   ibm-fhir-server:
-    container_name: ibmfhir
+    # fhir_ibm_version currently equals 4.5.3
     image: ibmcom/ibm-fhir-server:${IBM_FHIR_SERVER_VERSION}
-    networks:
-      - fhir-benchmark
     volumes:
       - ./server.xml:/opt/ol/wlp/usr/servers/fhir-server/server.xml
       - ./fhir-server-config.json:/opt/ol/wlp/usr/servers/fhir-server/config/default/fhir-server-config.json
-      - ./postgresql.properties:/opt/ol/wlp/usr/servers/fhir-server/postgresql.properties
-    #      - ./fhir-persistence-schema-4.3.0-cli.jar:/opt/ol/wlp/usr/servers/fhir-server/fhir-persistence-schema-4.3.0-cli.jar
+      - ./ping:/opt/ol/wlp/usr/servers/fhir-server/ping
     ports:
       - 9080:9080
       - 9443:9443
+    env_file:
+      - .env
     depends_on:
       - postgres
+      - ibm-fhir-schematool
+    user: root
     command: sh -c "
-      curl -O https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh;
-      curl -O -L https://github.com/IBM/FHIR/releases/download/${IBM_FHIR_SERVER_VERSION}/fhir-persistence-schema-${IBM_FHIR_SERVER_VERSION}-cli.jar;
-      chmod +x wait-for-it.sh;
-      ./wait-for-it.sh postgres:5432 -- java -jar fhir-persistence-schema-${IBM_FHIR_SERVER_VERSION}-cli.jar --db-type postgresql --prop-file postgresql.properties --schema-name fhirdata --create-schemas;
-      java -jar fhir-persistence-schema-${IBM_FHIR_SERVER_VERSION}-cli.jar --db-type postgresql --prop-file postgresql.properties --schema-name fhirdata --update-schema;
+      while ./ping -c1 ibm-fhir-schematool &>/dev/null; do sleep 1; done;
       /opt/ol/wlp/bin/server run fhir-server"
 
+  ibm-fhir-schematool:
+    image: ibmcom/ibm-fhir-schematool:${IBM_FHIR_SERVER_VERSION}
+    volumes:
+      - ./wait-for-it.sh:/opt/schematool/wait-for-it.sh
+    depends_on:
+      - postgres
+    entrypoint: sh -c "
+      chmod +x wait-for-it.sh;
+      ./wait-for-it.sh postgres:5432 -- ./run.sh --tool.behavior=onboard --db.type=postgresql --db.host=postgres --db.port=5432 --db.database=${POSTGRES_DB} --schema.name.fhir=${POSTGRES_DB_SCHEMA} --user=${POSTGRES_USER} --password=${POSTGRES_PASSWORD}"
+
   postgres:
-    image: postgres:12.3
-    networks:
-      - fhir-benchmark
+    # postgres_version currently equals 13.0
+    image: postgres:${POSTGRES_VERSION}
     ports:
-      - 6432:5432
+      - ${POSTGRES_PORT}:5432
     environment:
       # data/postgres folder within the container!
       PGDATA: /data/postgres
       # CHANGE User-Access data for productive usage!
-      POSTGRES_DB: fhirdata
-      POSTGRES_USER: fhirserver
-      POSTGRES_PASSWORD: change-password
-      # Using volumes instead of binding local folders, as Windows-based Hosts issue a "wrong ownership" error.
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      # Using volumes instead of binding local folders, as Windows-based hosts issue a "wrong ownership" error for local folders.
       # Be careful when changing this property for running instances!
       # You might have to copy contents of the data/postgres folder into the volume.
     volumes:
