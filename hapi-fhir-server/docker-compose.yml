@@ -3,20 +3,18 @@ version: "3.7"
 services:
   fhir:
     container_name: hapifhir
-    image: docker.miracum.org/miracum-data/hapi-fhir-jpaserver:v8.1.2
+    image: hapiproject/hapi:v5.0.0
     networks:
       - fhir-benchmark
     restart: always
     ports:
-      - "8082:8080"
+      - "8080:8080"
+    volumes:
+      - ./application.yml:/data/hapi/application.yml
+      - hapi-data:/data/hapi
     environment:
-      server.address: "http://localhost:8082/fhir"
-      datasource.url: "jdbc:postgresql://db:5432/fhir?currentSchema=public"
-      datasource.username: postgres
-      datasource.password: postgres
-      hibernate.dialect: org.hibernate.dialect.PostgreSQL95Dialect
-      datasource.driver: org.postgresql.Driver
-      validation.requests.enabled: "false"
+      SPRING_CONFIG_LOCATION: 'file:///data/hapi/application.yaml'
+      
     depends_on:
       - db
 
@@ -29,6 +27,9 @@ services:
     environment:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: fhir
+
+volumes:
+  hapi-data: {}
 
 networks:
   fhir-benchmark:
