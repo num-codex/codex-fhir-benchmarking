@@ -3,7 +3,7 @@ version: "3.7"
 services:
   fhir:
     container_name: hapifhir
-    image: hapiproject/hapi:v5.0.0
+    image: hapiproject/hapi:v5.1.0
     networks:
       - fhir-benchmark
     restart: always
@@ -11,9 +11,14 @@ services:
       - "8080:8080"
     volumes:
       - ./application.yml:/data/hapi/application.yml
-      - hapi-data:/data/hapi
     environment:
-      SPRING_CONFIG_LOCATION: 'file:///data/hapi/application.yaml'
+      SPRING_DATASOURCE_URL: "jdbc:postgresql://db:5432/fhir?currentSchema=public"
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: postgres
+      SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
+      SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQL10Dialect
+      HAPI_FHIR_SERVER_ADDRESS: "https://lists.recruit.miracum.org/fhir"
+      VALIDATION_REQUESTS_ENABLED: "false"
       
     depends_on:
       - db
