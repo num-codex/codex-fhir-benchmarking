@@ -44,7 +44,6 @@
       "blueprint": "MedicationStatement",
       "genDesc": {
         "$.id": "med-generated-id-1",
-        "$.code.coding[0].code": "L01AX03",
         "$.medicationReference.reference": "Medication/med-generated-id-1"
       }
     }
