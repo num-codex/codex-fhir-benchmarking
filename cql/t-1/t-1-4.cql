@@ -10,7 +10,7 @@ context Unfiltered
 
 define "Temozolomid Ref":
   'Medication/' + singleton from (
-    [Medication: Code 'L01AX03' from atc] M return FHIRHelpers.ToString(M.id))
+    from [Medication: Code 'L01AX03' from atc] M return M.id)
 
 context Patient
 
