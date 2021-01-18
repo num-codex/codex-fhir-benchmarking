@@ -4,6 +4,8 @@ services:
   ibm-fhir-server:
     # fhir_ibm_version currently equals 4.5.3
     image: ibmcom/ibm-fhir-server:${IBM_FHIR_SERVER_VERSION}
+    networks:
+      - fhir-benchmark
     volumes:
       - ./server.xml:/opt/ol/wlp/usr/servers/fhir-server/server.xml
       - ./fhir-server-config.json:/opt/ol/wlp/usr/servers/fhir-server/config/default/fhir-server-config.json
