@@ -544,12 +544,6 @@
             }
           ]
         }
-      },
-      {
-        "url": "https://fhir.bbmri.de/StructureDefinition/Custodian",
-        "valueReference": {
-          "reference": "Organization/collection-8"
-        }
       }
     ],
     "id": "bbmri-0-specimen-0",
