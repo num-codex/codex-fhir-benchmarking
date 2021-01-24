@@ -25,6 +25,8 @@ services:
 
   ibm-fhir-schematool:
     image: ibmcom/ibm-fhir-schematool:${IBM_FHIR_SERVER_VERSION}
+    networks:
+      - fhir-benchmark
     volumes:
       - ./wait-for-it.sh:/opt/schematool/wait-for-it.sh
     depends_on:
@@ -36,6 +38,8 @@ services:
   postgres:
     # postgres_version currently equals 13.0
     image: postgres:${POSTGRES_VERSION}
+    networks:
+      - fhir-benchmark
     ports:
       - ${POSTGRES_PORT}:5432
     environment:
