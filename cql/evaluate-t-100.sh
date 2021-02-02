@@ -8,5 +8,11 @@ echo "T100 - Geschlecht"
 echo "T100 - Geschlecht + Laborwert Covid Positiv"
 ./evaluate-measure.sh -f t-100/t-100-2.cql ${BASE}
 
-#echo "T100 - Geschlecht + Laborwert Covid Positiv + Laborwert Hemoglobin"
-#./evaluate-measure.sh -f t-100/t-100-3.cql ${BASE}
+echo "T100 - Geschlecht + Laborwert Covid Positiv + Laborwert Hemoglobin"
+./evaluate-measure.sh -f t-100/t-100-3.cql ${BASE}
+
+echo "T100 - Geschlecht + Laborwert Covid Positiv + Laborwert Hemoglobin (ohne Zeit)"
+./evaluate-measure.sh -f t-100/t-100-3.cql ${BASE}
+
+echo "T100 - Geschlecht + Laborwert Covid Positiv + Laborwert Hemoglobin (mit Zeit)"
+./evaluate-measure.sh -f t-100/t-100-3-time.cql ${BASE}
