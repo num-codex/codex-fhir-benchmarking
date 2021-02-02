@@ -4,6 +4,7 @@ include FHIRHelpers version '4.0.0'
 
 codesystem loinc: 'http://loinc.org'
 codesystem snomed: 'http://snomed.info/sct'
+codesystem icd10: 'http://fhir.de/CodeSystem/dimdi/icd-10-gm'
 
 context Patient
 
@@ -23,6 +24,19 @@ define "Laborwert Hemoglobin":
         FHIRHelpers.ToDateTime(C.effective as dateTime)) < 1
     where (H.value as Quantity) < 10 'g/dl' or (H.value as Quantity) > 20 'g/dl'
 
-define InInitialPopulation:
-  Geschlecht and "Laborwert Covid Positiv" and "Laborwert Hemoglobin"
+define "Diagnose Brustkrebs":
+  exists [Condition: Code 'C50.0' from icd10] or
+  exists [Condition: Code 'C50.1' from icd10] or
+  exists [Condition: Code 'C50.2' from icd10] or
+  exists [Condition: Code 'C50.3' from icd10] or
+  exists [Condition: Code 'C50.4' from icd10] or
+  exists [Condition: Code 'C50.5' from icd10] or
+  exists [Condition: Code 'C50.6' from icd10] or
+  exists [Condition: Code 'C50.8' from icd10] or
+  exists [Condition: Code 'C50.9' from icd10]
 
+define InInitialPopulation:
+  Geschlecht and
+  "Laborwert Covid Positiv" and
+  "Laborwert Hemoglobin" and
+  "Diagnose Brustkrebs"
