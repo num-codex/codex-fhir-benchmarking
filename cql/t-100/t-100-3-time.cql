@@ -24,5 +24,5 @@ define "Laborwert Hemoglobin":
     where (H.value as Quantity) < 10 'g/dl' or (H.value as Quantity) > 20 'g/dl')
 
 define InInitialPopulation:
-  Geschlecht and "Laborwert Covid Positiv"
+  Geschlecht and "Laborwert Covid Positiv" and "Laborwert Hemoglobin"
 

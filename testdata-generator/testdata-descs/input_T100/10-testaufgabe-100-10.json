@@ -4,9 +4,9 @@
   "idOffsets": {
     "Patient": 500,
     "Encounter": 500,
-    "Condition": 0,
+    "Condition": 1510,
     "Procedure": 0,
-    "Observation": 0,
+    "Observation": 10000,
     "ServiceRequest": 0,
     "DiagnosticReport": 0,
     "Specimen": 0
@@ -34,7 +34,7 @@
     {
       "blueprint": "Observation",
       "genDesc": {
-        "$.code.coding[0].code": "817-7",
+        "$.code.coding[0].code": "718-7",
         "$.effectiveDateTime": {
           "function": "genDate",
           "params": {

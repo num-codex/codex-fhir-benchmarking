@@ -6,7 +6,7 @@
     "Encounter": 9750,
     "Condition": 0,
     "Procedure": 0,
-    "Observation": 0,
+    "Observation": 250,
     "ServiceRequest": 0,
     "DiagnosticReport": 0,
     "Specimen": 0
@@ -43,13 +43,17 @@
             "start": "2020-03-01T00:00:00+01:00",
             "end": "2020-12-01T00:00:00+01:00"
           }
+        },
+        "$.valueQuantity": {
+          "function": "unset",
+          "params":{}
         }
       }
     },
     {
       "blueprint": "Observation",
       "genDesc": {
-        "$.code.coding[0].code": "817-7",
+        "$.code.coding[0].code": "718-7",
         "$.effectiveDateTime": {
           "function": "dateDistanceFromRessource",
           "params": {

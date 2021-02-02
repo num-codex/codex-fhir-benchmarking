@@ -1,11 +1,11 @@
 {
-  "name": "t-100-3",
-  "numberToGenerate": 250,
+  "name": "t-100-14",
+  "numberToGenerate": 400,
   "idOffsets": {
-    "Patient": 9500,
-    "Encounter": 9500,
+    "Patient": 10000,
+    "Encounter": 1000,
     "Condition": 0,
-    "Procedure": 0,
+    "Procedure": 100,
     "Observation": 0,
     "ServiceRequest": 0,
     "DiagnosticReport": 0,
@@ -19,7 +19,7 @@
           "function": "genEnum",
           "params": {
             "options": [
-              "female"
+              "male"
             ]
           }
         }
@@ -32,16 +32,14 @@
       }
     },
     {
-      "blueprint": "Observation",
+      "blueprint": "Procedure",
       "genDesc": {
-        "$.code.coding[0].code": "94500-6",
-        "$.valueCodeableConcept.coding[0].system": "http://snomed.info/sct",
-        "$.valueCodeableConcept.coding[0].code": "positiv",
-        "$.effectiveDateTime": {
+        "$.code.coding[0].code": "8-80",
+        "$.performedDateTime": {
           "function": "genDate",
           "params": {
-            "start": "2020-03-01T00:00:00+01:00",
-            "end": "2020-12-01T00:00:00+01:00"
+            "start": "2000-01-01T09:45:00+01:00",
+            "end": "2020-01-01T09:45:00+01:00"
           }
         }
       }

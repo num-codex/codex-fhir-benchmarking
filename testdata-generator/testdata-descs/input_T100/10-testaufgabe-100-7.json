@@ -1,12 +1,12 @@
 {
-  "name": "t-100-13",
-  "numberToGenerate": 90,
+  "name": "t-100-7",
+  "numberToGenerate": 10,
   "idOffsets": {
-    "Patient": 500,
-    "Encounter": 500,
+    "Patient": 9990,
+    "Encounter": 9990,
     "Condition": 0,
     "Procedure": 0,
-    "Observation": 0,
+    "Observation": 750,
     "ServiceRequest": 0,
     "DiagnosticReport": 0,
     "Specimen": 0
@@ -19,7 +19,7 @@
           "function": "genEnum",
           "params": {
             "options": [
-              "male"
+              "female"
             ]
           }
         }
@@ -34,12 +34,33 @@
     {
       "blueprint": "Observation",
       "genDesc": {
-        "$.code.coding[0].code": "817-7",
+        "$.code.coding[0].code": "94500-6",
+        "$.valueCodeableConcept.coding[0].system": "http://snomed.info/sct",
+        "$.valueCodeableConcept.coding[0].code": "positiv",
         "$.effectiveDateTime": {
           "function": "genDate",
           "params": {
-            "start": "2000-01-01T09:45:00+01:00",
-            "end": "2020-01-01T09:45:00+01:00"
+            "start": "2020-03-01T00:00:00+01:00",
+            "end": "2020-12-01T00:00:00+01:00"
+          }
+        },
+        "$.valueQuantity": {
+          "function": "unset",
+          "params":{}
+        }
+      }
+    },
+    {
+      "blueprint": "Observation",
+      "genDesc": {
+        "$.code.coding[0].code": "718-7",
+        "$.effectiveDateTime": {
+          "function": "dateDistanceFromRessource",
+          "params": {
+            "resourcePath": "$.2.resource.effectiveDateTime",
+            "distancePlus": 28,
+            "distanceMinus": 28
+
           }
         },
         "$.valueQuantity.value": {
@@ -59,7 +80,7 @@
         "$.performedDateTime": {
           "function": "dateDistanceFromRessource",
           "params": {
-            "resourcePath": "$.2.resource.effectiveDateTime",
+            "resourcePath": "$.3.resource.effectiveDateTime",
             "distancePlus": 0,
             "distanceMinus": 28
 
