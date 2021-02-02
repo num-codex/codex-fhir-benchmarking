@@ -17,7 +17,7 @@ define "Laborwert Covid Positiv":
 
 define "Laborwert Hemoglobin":
   exists from [Observation: Code '718-7' from loinc] O
-    where (O.value as Quantity) < 10 'g/dl' or (O.value as Quantity) > 20 'g/dl'
+    where not ((O.value as Quantity) between 10 'g/dl' and 20 'g/dl')
 
 define InInitialPopulation:
   Geschlecht and "Laborwert Covid Positiv" and "Laborwert Hemoglobin"

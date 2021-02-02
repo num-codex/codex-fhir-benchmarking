@@ -21,7 +21,7 @@ define "Laborwert Hemoglobin":
       such that Abs(difference in months between
         FHIRHelpers.ToDateTime(H.effective as dateTime) and
         FHIRHelpers.ToDateTime(C.effective as dateTime)) < 1
-    where (H.value as Quantity) < 10 'g/dl' or (H.value as Quantity) > 20 'g/dl'
+    where not ((O.value as Quantity) between 10 'g/dl' and 20 'g/dl')
 
 define InInitialPopulation:
   Geschlecht and "Laborwert Covid Positiv" and "Laborwert Hemoglobin"
