@@ -1,3 +1,2 @@
-docker-compose down
-docker volume remove blaze-server_blaze-data
+docker-compose down -v
 docker-compose up -d
