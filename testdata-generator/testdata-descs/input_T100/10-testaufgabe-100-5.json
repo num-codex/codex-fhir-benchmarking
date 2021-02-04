@@ -1,15 +1,15 @@
 {
   "name": "t-100-5",
-  "numberToGenerate": 100,
+  "numberToGenerate": 2250,
   "idOffsets": {
-    "Patient": 9900,
-    "Encounter": 9900,
-    "Condition": 0,
-    "Procedure": 0,
-    "Observation": 0,
+    "Patient": 250,
+    "Encounter": 250,
+    "Condition": 250,
+    "Procedure": 50,
+    "Observation": 300,
     "ServiceRequest": 0,
     "DiagnosticReport": 0,
-    "Specimen": 0
+    "Specimen": 250
   },
   "Bundle": [
     {

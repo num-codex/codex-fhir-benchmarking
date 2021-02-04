@@ -13,15 +13,6 @@ context Patient
 define Geschlecht:
   Patient.gender = 'female'
 
-define "Laborwert Covid Positiv":
-  exists from [Observation: Code '94500-6' from loinc] O
-    where O.value.coding contains Code 'positiv' from snomed
-    and FHIRHelpers.ToDateTime(O.effective as dateTime) between @2020-03-01 and @2020-12-01
-
-define "Laborwert Hemoglobin":
-  exists from [Observation: Code '718-7' from loinc] O
-    where (O.value as Quantity) < 10 'g/dl' or (O.value as Quantity) > 20 'g/dl'
-
 define "Diagnose Brustkrebs":
   exists [Condition: Code 'C50.0' from icd10] or
   exists [Condition: Code 'C50.1' from icd10] or
@@ -44,15 +35,39 @@ define "Bioprobe":
         Code 'C50.4' from icd10,
         Code 'C50.5' from icd10,
         Code 'C50.6' from icd10,
-        Code 'C50.7' from icd10}
+        Code 'C50.7' from icd10
+        }
+
+define Group1:
+  Geschlecht
+  and "Diagnose Brustkrebs"
+  and "Bioprobe"
+
+define "Laborwert Covid Positiv":
+  from [Observation: Code '94500-6' from loinc] O
+    where O.value.coding contains Code 'positiv' from snomed
+       and FHIRHelpers.ToDateTime(O.effective as dateTime) between @2020-03-01 and @2020-12-01
+    return FHIRHelpers.ToDateTime(O.effective as dateTime)
+
+define Group2:
+  "Laborwert Covid Positiv"
+
+define "Laborwert Hemoglobin":
+  from [Observation: Code '718-7' from loinc] O
+    where not ((O.value as Quantity) between 10 'g/dl' and 20 'g/dl')
+    return FHIRHelpers.ToDateTime(O.effective as dateTime)
+
+define Group3:
+  "Laborwert Hemoglobin"
 
 define "Prozedur Bluttransfusion":
-  exists [Procedure: Code '8-80' from ops]
+  from [Procedure: Code '8-80' from ops] P
+  return FHIRHelpers.ToDateTime(P.performed as dateTime)
+
+define Group4:
+  "Prozedur Bluttransfusion"
 
 define InInitialPopulation:
-  Geschlecht and
-  "Laborwert Covid Positiv" and
-  "Laborwert Hemoglobin" and
-  "Diagnose Brustkrebs" and
-  "Bioprobe" and not
-  "Prozedur Bluttransfusion"
+  Group1 
+  and Abs(difference in months between Min(Group2) and Min(Group3)) < 1 
+  and (difference in months between Min(Group4) and Min(Group3) between 0 and 1)
