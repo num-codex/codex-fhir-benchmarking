@@ -28,8 +28,7 @@ define "Diagnose Brustkrebs":
   exists [Condition: Code 'C50.4' from icd10] or
   exists [Condition: Code 'C50.5' from icd10] or
   exists [Condition: Code 'C50.6' from icd10] or
-  exists [Condition: Code 'C50.8' from icd10] or
-  exists [Condition: Code 'C50.9' from icd10]
+  exists [Condition: Code 'C50.7' from icd10]
 
 define InInitialPopulation:
   Geschlecht and

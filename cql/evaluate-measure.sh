@@ -121,4 +121,4 @@ MEASURE_ID=$(create-measure ${MEASURE_URI} ${LIBRARY_URI} ${TYPE} | post "Measur
 echo "Evaluate measure ${MEASURE_ID} ..."
 COUNT=$(evaluate-measure ${MEASURE_ID} | jq ".group[0].population[0].count")
 
-echo "Count: ${COUNT}"
+printf "Count: ${COUNT} \n\n\n"

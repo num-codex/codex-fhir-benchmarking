@@ -21,8 +21,7 @@ define "Diagnose Brustkrebs":
   exists [Condition: Code 'C50.4' from icd10] or
   exists [Condition: Code 'C50.5' from icd10] or
   exists [Condition: Code 'C50.6' from icd10] or
-  exists [Condition: Code 'C50.8' from icd10] or
-  exists [Condition: Code 'C50.9' from icd10]
+  exists [Condition: Code 'C50.7' from icd10]
 
 define "Bioprobe":
   exists from [Specimen: Code 'tumor' from SampleMaterialType] S
@@ -36,13 +35,13 @@ define "Bioprobe":
         Code 'C50.4' from icd10,
         Code 'C50.5' from icd10,
         Code 'C50.6' from icd10,
-        Code 'C50.8' from icd10,
-        Code 'C50.9' from icd10}
+        Code 'C50.7' from icd10
+        }
 
 define Group1:
-  Geschlecht and
-  "Diagnose Brustkrebs" and
-  "Bioprobe"
+  Geschlecht
+  and "Diagnose Brustkrebs"
+  and "Bioprobe"
 
 define "Laborwert Covid Positiv":
   from [Observation: Code '94500-6' from loinc] O
@@ -69,6 +68,6 @@ define Group4:
   "Prozedur Bluttransfusion"
 
 define InInitialPopulation:
-  Group1 and
-  Abs(difference in months between Min(Group2) and Min(Group3)) < 1 and
-  (difference in months between Min(Group3) and Min(Group4) between 0 and 1)
+  Group1 
+  and Abs(difference in months between Min(Group2) and Min(Group3)) < 1 
+  and (difference in months between Min(Group4) and Min(Group3) between 0 and 1)
