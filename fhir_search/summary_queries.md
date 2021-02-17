@@ -8,7 +8,7 @@
 | 2 | Condition?code=C71.0,C71.1,C71.2,C71.3,C71.4,C71.5 |
 | 3 | Observation?code=26515-7&value-quantity=le50 |
 | 4 | MedicationStatement?medication.code=L01AX03 |
-| Compact | Nnot possible |
+| Compact | Not possible |
 
 
 ## Test Task 2
