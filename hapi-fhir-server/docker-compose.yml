@@ -17,7 +17,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: postgres
       SPRING_DATASOURCE_DRIVERCLASSNAME: org.postgresql.Driver
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQL10Dialect
-      HAPI_FHIR_SERVER_ADDRESS: "https://lists.recruit.miracum.org/fhir"
+      HAPI_FHIR_SERVER_ADDRESS: "http://localhost:8080/fhir"
       VALIDATION_REQUESTS_ENABLED: "false"
       
     depends_on:
