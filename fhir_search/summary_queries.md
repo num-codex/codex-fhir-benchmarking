@@ -29,8 +29,7 @@
 | 1 | Condition?code=C50.0 |
 | 2 | Procedure?code=5-* |
 | 3 | Specimen?type=Tumor |
-| 4 | MedicationStatement?medication.code=L01AX03 |
-| Compact | Possible, if Specimen and Condition losely related: Patient?_has:Condition:subject:code=C50.0&_has:Procedure:subject:code=5-* |
+| Compact | Possible, if Specimen and Condition losely related: Patient?_has:Condition:subject:code=C50.0&_has:Procedure:subject:code=5-*&_has:Specimen:subject:type=Tumor |
 
 
 ## Test Task 100
