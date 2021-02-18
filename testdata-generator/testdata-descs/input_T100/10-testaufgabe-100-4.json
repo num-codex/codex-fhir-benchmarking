@@ -46,7 +46,7 @@
     {
       "blueprint": "Specimen",
       "genDesc": {
-        "$.type.coding.0.code": "tumor",
+        "$.type.coding.0.code": "Tumor",
         "$.extension.1.valueCodeableConcept.coding.0.code": {
           "function": "genEnum",
           "params": {

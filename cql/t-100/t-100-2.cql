@@ -24,7 +24,7 @@ define "Diagnose Brustkrebs":
   exists [Condition: Code 'C50.7' from icd10]
 
 define "Bioprobe":
-  exists from [Specimen: Code 'tumor' from SampleMaterialType] S
+  exists from [Specimen: Code 'Tumor' from SampleMaterialType] S
     where exists from S.extension E
       where E.url = 'https://fhir.bbmri.de/StructureDefinition/SampleDiagnosis'
       and E.value.coding in {
